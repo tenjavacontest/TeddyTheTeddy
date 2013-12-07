@@ -16,20 +16,20 @@ import me.teddytheteddy.tenjava.dec.themeone.Main;
  * @author TeddyTheTeddy
  */
 public class Poem {
-    private Main pl = new Main();
-    
     private String id;
     private String author;
     private String title;
     private String path;
     private boolean enabled;
+    private Main pl;
     
-    public Poem(String id, String author, String title, String path, boolean enabled){
+    public Poem(String id, String author, String title, String path, boolean enabled, Main pl){
         this.id = id;
         this.author = author;
         this.title = title;
         this.path = path;
         this.enabled = enabled;
+        this.pl = pl;
     }
     
     public String getID(){
@@ -50,7 +50,7 @@ public class Poem {
     
     public ArrayList<String> getText(){
         ArrayList<String> res = new ArrayList<String>();
-        File text = new File(pl.getDataFolder(), this.path);
+        File text = new File(this.pl.getDataFolder(), this.path);
         try {
             FileReader txtReader = new FileReader(text);
             BufferedReader txtBr = new BufferedReader(txtReader);

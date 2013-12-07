@@ -63,7 +63,7 @@ public class Main extends JavaPlugin {
         this.saveConfig();
 
         //Loading Poems
-        cm.getPoems(config);
+        cm.getPoems(config, this);
         
         //Registering Event
         Bukkit.getPluginManager().registerEvents(new RequestPoem(this), this);

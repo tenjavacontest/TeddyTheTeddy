@@ -1,5 +1,6 @@
 package me.teddytheteddy.tenjava.dec.themeone.managers;
 
+import java.io.File;
 import java.util.ArrayList;
 import me.teddytheteddy.tenjava.dec.themeone.Main;
 import me.teddytheteddy.tenjava.dec.themeone.objects.Poem;
@@ -45,10 +46,10 @@ public class ConfigManager {
         return res;
     }
     //Geting the poems
-    public void getPoems(FileConfiguration config){
+    public void getPoems(FileConfiguration config, Main pl){
         for(String key : config.getConfigurationSection("poems").getKeys(false)){
             if(this.getBoolean(config, "poems." + key + ".enabled")){
-                Main.Poems.add(new Poem(key, getString(config, "poems." + key + ".author"), getString(config, "poems." + key + ".title"), getString(config, "poems" + key + ".path"), true));
+                Main.Poems.add(new Poem(key, getString(config, "poems." + key + ".author"), getString(config, "poems." + key + ".title"), getString(config, "poems." + key + ".path"), true, pl));
             }
         }
     }

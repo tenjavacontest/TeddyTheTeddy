@@ -19,8 +19,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class RequestPoem implements Listener {
 
     public Main pl;
-    
-    public RequestPoem(Main pl){
+
+    public RequestPoem(Main pl) {
         this.pl = pl;
     }
 
@@ -32,15 +32,24 @@ public class RequestPoem implements Listener {
                     Random r = new Random();
                     int toPick = r.nextInt(Main.Poems.size());
                     Poem poemToUse = Main.Poems.get(toPick);
+
+                    StringBuilder textSB = new StringBuilder();
+                    if (poemToUse.getText().size() >= 12) {
+
+                    } else {
+                        for (String s : poemToUse.getText()) {
+                            textSB.append(s + "\n");
+                        }
+                    }
                     
-                    //String[] text = (String[]) poemToUse.getText().toArray();
-                    
+                    String text = textSB.toString();
+
                     ItemStack bookToGive = new ItemStack(Material.WRITTEN_BOOK, 1);
                     ItemMeta bookToGiveIM = bookToGive.getItemMeta();
                     BookMeta bookToGiveBM = (BookMeta) bookToGiveIM;
                     bookToGiveBM.setTitle(poemToUse.getTitle());
                     bookToGiveBM.setAuthor(poemToUse.getAuthor());
-                    bookToGiveBM.addPage("Hello World");
+                    bookToGiveBM.addPage(text);
                     bookToGive.setItemMeta(bookToGiveBM);
 
                     event.getPlayer().getInventory().addItem(bookToGive);
