@@ -5,7 +5,7 @@ The stream will be live at [Twitch.TV/TeddyTheTeddy](http://www.twitch.tv/teddyt
 
 ### Entries
 I am hoping to enter both of the ten.java themes, but if I dont have time, well I dont have time.
-- Theme 1 - [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%201) - [Download]()
+- Theme 1 - [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%201) - [Download](https://raw.github.com/tenjavacontest/TeddyTheTeddy/master/Theme%201%20Final%20Build%20-%20Poetry.jar)
 - Theme 2 [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%202) - [Download]()
 
 ### License
