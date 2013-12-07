@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  *
- * @author TeddyTheTeddy
+ * @author <b>TeddyTheTeddy</b>
  *
  */
 public class Main extends JavaPlugin {
@@ -27,13 +27,14 @@ public class Main extends JavaPlugin {
 
     //Class Instances/ Referances
     private ConfigManager cm = new ConfigManager();
-    private Util u = new Util();
 
-    //onEnable
+    /**
+     * Executed when plugin is enabled.<br />
+     * - Checks the config<br />
+     * - Enables all events
+     */
     @Override
     public void onEnable() {
-        
-        u.sys("Doing things with the config");
         //Configuration File
         configFile = new File(this.getDataFolder(), "config.yml");
         try {
@@ -41,12 +42,12 @@ public class Main extends JavaPlugin {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         config = this.getConfig();
 
         //Copying Poems in .jar
         new DefaultPoemManager().movePoems(this.getDataFolder());
-        
+
         if (!config.contains("poems")) {
             //Haiku 1
             cm.set(config, "poems.1.author", "Tirzah Goodwin");
@@ -59,19 +60,22 @@ public class Main extends JavaPlugin {
             cm.set(config, "poems.2.path", "Poems/Haiku-Death.txt");
             cm.set(config, "poems.2.enabled", true);
         }
-        
+
         this.saveConfig();
 
         //Loading Poems
         cm.getPoems(config, this);
-        
+
         //Registering Event
         Bukkit.getPluginManager().registerEvents(new RequestPoem(this), this);
     }
 
-    //onDisable
+    /**
+     * Executed when the plugin is disabled.<br />
+     * - Nothing
+     */
     @Override
     public void onDisable() {
-        
+
     }
 }

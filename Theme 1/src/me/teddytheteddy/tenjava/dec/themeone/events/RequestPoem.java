@@ -26,6 +26,11 @@ public class RequestPoem implements Listener {
         this.pl = pl;
     }
 
+    /**
+     * Event used to give a player a book
+     *
+     * @param event
+     */
     @EventHandler
     public void onBookshelfClick(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {

@@ -17,6 +17,11 @@ import net.minecraft.util.org.apache.commons.io.IOUtils;
  */
 public class DefaultPoemManager {
 
+    /**
+     * Moves all the poems in the jar to the poem folder :)
+     *
+     * @param df
+     */
     public void movePoems(File df) {
         try {
             File pf = new File(df.getPath(), "Poems/");

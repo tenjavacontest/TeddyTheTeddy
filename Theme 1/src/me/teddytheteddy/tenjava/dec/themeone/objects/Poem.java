@@ -10,20 +10,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import me.teddytheteddy.tenjava.dec.themeone.Main;
 
-
 /**
  *
  * @author TeddyTheTeddy
  */
 public class Poem {
+
     private String id;
     private String author;
     private String title;
     private String path;
     private boolean enabled;
     private Main pl;
-    
-    public Poem(String id, String author, String title, String path, boolean enabled, Main pl){
+
+    public Poem(String id, String author, String title, String path, boolean enabled, Main pl) {
         this.id = id;
         this.author = author;
         this.title = title;
@@ -31,24 +31,24 @@ public class Poem {
         this.enabled = enabled;
         this.pl = pl;
     }
-    
-    public String getID(){
+
+    public String getID() {
         return this.id;
     }
-    
-    public String getAuthor(){
+
+    public String getAuthor() {
         return this.author;
     }
-    
-    public String getTitle(){
+
+    public String getTitle() {
         return this.title;
     }
-    
-    public String getPath(){
+
+    public String getPath() {
         return this.path;
     }
-    
-    public ArrayList<String> getText(){
+
+    public ArrayList<String> getText() {
         ArrayList<String> res = new ArrayList<String>();
         File text = new File(this.pl.getDataFolder(), this.path);
         try {
@@ -56,7 +56,7 @@ public class Poem {
             BufferedReader txtBr = new BufferedReader(txtReader);
             String line = null;
             try {
-                while((line = txtBr.readLine()) != null){
+                while ((line = txtBr.readLine()) != null) {
                     res.add(line);
                 }
             } catch (IOException ex) {
@@ -67,8 +67,8 @@ public class Poem {
         }
         return res;
     }
-    
-    public boolean getEnabled(){
+
+    public boolean getEnabled() {
         return this.enabled;
     }
 }
