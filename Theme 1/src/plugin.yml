@@ -6,3 +6,5 @@ main: me.teddytheteddy.tenjava.dec.themeone.Main
 commands:
 
 permissions:
+    poetry.get:
+        default: true

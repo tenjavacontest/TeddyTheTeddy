@@ -1,5 +1,7 @@
 package me.teddytheteddy.tenjava.dec.themeone.events;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import me.teddytheteddy.tenjava.dec.themeone.Main;
 import me.teddytheteddy.tenjava.dec.themeone.objects.Poem;
@@ -28,33 +30,56 @@ public class RequestPoem implements Listener {
     public void onBookshelfClick(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (event.getClickedBlock().getType().equals(Material.BOOKSHELF)) {
-                if (!event.getPlayer().isSneaking()) {
-                    Random r = new Random();
-                    int toPick = r.nextInt(Main.Poems.size());
-                    Poem poemToUse = Main.Poems.get(toPick);
+                if (event.getPlayer().hasPermission("poetry.get")) {
+                    if (!event.getPlayer().isSneaking()) {
+                        Random r = new Random();
+                        int toPick = r.nextInt(Main.Poems.size());
+                        Poem poemToUse = Main.Poems.get(toPick);
 
-                    StringBuilder textSB = new StringBuilder();
-                    if (poemToUse.getText().size() >= 12) {
+                        List<String> FinalText = new ArrayList<String>();
 
-                    } else {
-                        for (String s : poemToUse.getText()) {
-                            textSB.append(s + "\n");
+                        if (poemToUse.getText().size() >= 9) {
+                            StringBuilder textSB = new StringBuilder();
+
+                            int lines = 0;
+                            for (String s : poemToUse.getText()) {
+                                textSB.append(s + "\n");
+                                lines++;
+                                if (lines == 9) {
+                                    FinalText.add(textSB.toString());
+                                    lines = 0;
+                                    textSB = new StringBuilder();
+                                }
+                            }
+                            FinalText.add(textSB.toString());
+                        } else {
+                            StringBuilder textSB = new StringBuilder();
+                            for (String s : poemToUse.getText()) {
+                                textSB.append(s + "\n");
+                            }
+                            FinalText.add(textSB.toString());
                         }
+
+                        String[] text = new String[FinalText.size()];
+                        int itteration = 0;
+                        for (String s : FinalText) {
+                            text[itteration] = s;
+                            itteration++;
+                        }
+
+                        ItemStack bookToGive = new ItemStack(Material.WRITTEN_BOOK, 1);
+                        ItemMeta bookToGiveIM = bookToGive.getItemMeta();
+                        BookMeta bookToGiveBM = (BookMeta) bookToGiveIM;
+                        bookToGiveBM.setTitle(poemToUse.getTitle());
+                        bookToGiveBM.setAuthor(poemToUse.getAuthor());
+                        bookToGiveBM.addPage(text);
+                        bookToGive.setItemMeta(bookToGiveBM);
+
+                        event.getPlayer().getInventory().addItem(bookToGive);
+                        event.getPlayer().updateInventory();
                     }
-                    
-                    String text = textSB.toString();
-
-                    ItemStack bookToGive = new ItemStack(Material.WRITTEN_BOOK, 1);
-                    ItemMeta bookToGiveIM = bookToGive.getItemMeta();
-                    BookMeta bookToGiveBM = (BookMeta) bookToGiveIM;
-                    bookToGiveBM.setTitle(poemToUse.getTitle());
-                    bookToGiveBM.setAuthor(poemToUse.getAuthor());
-                    bookToGiveBM.addPage(text);
-                    bookToGive.setItemMeta(bookToGiveBM);
-
-                    event.getPlayer().getInventory().addItem(bookToGive);
-                    event.getPlayer().updateInventory();
                 }
+
             } else {
             }
         } else {
