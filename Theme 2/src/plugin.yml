@@ -1,1 +1,11 @@
-# To Fill This In :) #
+name: Iron Man
+version: 0.0.1
+description: Allows YOU to become iron man
+main: me.teddytheteddy.tenjava.dec.themetwo.Main
+
+permissions:
+    ironman.be:
+        default: op
+commands:
+    ironman:
+        description: All information on the iron man plugin
