@@ -23,7 +23,7 @@ public class Main extends JavaPlugin {
     //Variables
     public File configFile;
     public FileConfiguration config = null;
-    public ArrayList<Poem> Poems = new ArrayList<Poem>();
+    public static ArrayList<Poem> Poems = new ArrayList<Poem>();
 
     //Class Instances/ Referances
     private ConfigManager cm = new ConfigManager();
@@ -48,19 +48,25 @@ public class Main extends JavaPlugin {
         new DefaultPoemManager().movePoems(this.getDataFolder());
         
         if (!config.contains("poems")) {
+            //Haiku 1
             cm.set(config, "poems.1.author", "Tirzah Goodwin");
             cm.set(config, "poems.1.title", "Evening");
             cm.set(config, "poems.1.path", "Poems/Haiku-Evening.txt");
             cm.set(config, "poems.1.enabled", true);
+            //Haiku 2
+            cm.set(config, "poems.2.author", "Maggie Holt");
+            cm.set(config, "poems.2.title", "Death");
+            cm.set(config, "poems.2.path", "Poems/Haiku-Death.txt");
+            cm.set(config, "poems.2.enabled", true);
         }
         
         this.saveConfig();
 
         //Loading Poems
-        cm.getPoems(config, Poems);
+        cm.getPoems(config);
         
         //Registering Event
-        Bukkit.getPluginManager().registerEvents(new RequestPoem(), this);
+        Bukkit.getPluginManager().registerEvents(new RequestPoem(this), this);
     }
 
     //onDisable

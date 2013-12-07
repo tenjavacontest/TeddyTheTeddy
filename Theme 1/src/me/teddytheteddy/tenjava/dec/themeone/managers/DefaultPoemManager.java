@@ -21,20 +21,26 @@ public class DefaultPoemManager {
         try {
             File pf = new File(df.getPath(), "Poems/");
             pf.mkdirs();
-            
-            File p1f = new File(df.getPath(), "Poems/Haiku-Evening.txt");
-            try {
-                p1f.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(DefaultPoemManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
-            OutputStream o1 = new FileOutputStream(df.getPath() + "/Poems/Haiku-Evening.txt");
-            InputStream p1 = Main.class.getResourceAsStream("/resources/Haiku-Evening.txt");
-            try {
-                IOUtils.copy(p1, o1);
-            } catch (IOException ex) {
-                Logger.getLogger(DefaultPoemManager.class.getName()).log(Level.SEVERE, null, ex);
+            File p1f = new File(df.getPath(), "Poems/Haiku-Evening.txt");
+            File p2f = new File(df.getPath(), "Poems/Haiku-Death.txt");
+            if (!p1f.exists() || !p2f.exists()) {
+                try {
+                    p1f.createNewFile();
+                } catch (IOException ex) {
+                    Logger.getLogger(DefaultPoemManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                OutputStream o1 = new FileOutputStream(df.getPath() + "/Poems/Haiku-Evening.txt");
+                InputStream p1 = Main.class.getResourceAsStream("/Haiku-Evening.txt");
+                OutputStream o2 = new FileOutputStream(df.getPath() + "/Poems/Haiku-Death.txt");
+                InputStream p2 = Main.class.getResourceAsStream("/Haiku-Death.txt");
+                try {
+                    IOUtils.copy(p1, o1);
+                    IOUtils.copy(p2, o2);
+                } catch (IOException ex) {
+                    Logger.getLogger(DefaultPoemManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DefaultPoemManager.class.getName()).log(Level.SEVERE, null, ex);

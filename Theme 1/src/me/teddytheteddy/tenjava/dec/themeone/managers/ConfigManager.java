@@ -1,6 +1,7 @@
 package me.teddytheteddy.tenjava.dec.themeone.managers;
 
 import java.util.ArrayList;
+import me.teddytheteddy.tenjava.dec.themeone.Main;
 import me.teddytheteddy.tenjava.dec.themeone.objects.Poem;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -44,10 +45,10 @@ public class ConfigManager {
         return res;
     }
     //Geting the poems
-    public void getPoems(FileConfiguration config, ArrayList<Poem> Poems){
-        for(String key : config.getConfigurationSection("poems").getKeys(true)){
-            if(this.getBoolean(config, "poems." + key)){
-                Poems.add(new Poem(key, getString(config, "poems." + key + ".author"), getString(config, "poems." + key + ".title"), getString(config, "poems" + key + ".path"), true));
+    public void getPoems(FileConfiguration config){
+        for(String key : config.getConfigurationSection("poems").getKeys(false)){
+            if(this.getBoolean(config, "poems." + key + ".enabled")){
+                Main.Poems.add(new Poem(key, getString(config, "poems." + key + ".author"), getString(config, "poems." + key + ".title"), getString(config, "poems" + key + ".path"), true));
             }
         }
     }
