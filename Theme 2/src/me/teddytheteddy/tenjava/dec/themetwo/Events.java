@@ -2,6 +2,7 @@ package me.teddytheteddy.tenjava.dec.themetwo;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.potion.PotionEffectType;
 
 /**
  *
@@ -36,12 +38,13 @@ public class Events implements Listener {
      */
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        if(Main.IronMen.containsKey(event.getPlayer().getName())){
+        if (Main.IronMen.containsKey(event.getPlayer().getName())) {
             Entity e = Main.IronMen.get(event.getPlayer().getName());
             e.remove();
+            event.getPlayer().removePotionEffect(PotionEffectType.INVISIBILITY);
             Main.IronMen.remove(event.getPlayer().getName());
         }
-        if(Main.Morphing.containsKey(event.getPlayer().getName())){
+        if (Main.Morphing.containsKey(event.getPlayer().getName())) {
             Main.Morphing.remove(event.getPlayer().getName());
         }
     }
@@ -52,12 +55,13 @@ public class Events implements Listener {
      */
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event) {
-        if(Main.IronMen.containsKey(event.getPlayer().getName())){
+        if (Main.IronMen.containsKey(event.getPlayer().getName())) {
             Entity e = Main.IronMen.get(event.getPlayer().getName());
             e.remove();
+            event.getPlayer().removePotionEffect(PotionEffectType.INVISIBILITY);
             Main.IronMen.remove(event.getPlayer().getName());
         }
-        if(Main.Morphing.containsKey(event.getPlayer().getName())){
+        if (Main.Morphing.containsKey(event.getPlayer().getName())) {
             Main.Morphing.remove(event.getPlayer().getName());
         }
     }
@@ -68,7 +72,7 @@ public class Events implements Listener {
      */
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        
+
     }
 
     /**
@@ -80,7 +84,11 @@ public class Events implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         if (Main.Morphing.containsKey(event.getPlayer().getName())) {
             event.getPlayer().teleport(Main.Morphing.get(event.getPlayer().getName()));
-        } else {
+        }
+        if (Main.IronMen.containsKey(event.getPlayer().getName())) {
+            IronGolem g = (IronGolem) Main.IronMen.get(event.getPlayer().getName());
+            g.setTarget(event.getPlayer());
+            g.teleport(event.getPlayer().getLocation());
         }
     }
 
