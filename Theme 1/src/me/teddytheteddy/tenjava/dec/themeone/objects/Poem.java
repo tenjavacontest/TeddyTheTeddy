@@ -1,34 +1,39 @@
 package me.teddytheteddy.tenjava.dec.themeone.objects;
 
-import java.util.ArrayList;
 
 /**
  *
  * @author TeddyTheTeddy
  */
 public class Poem {
-    private int id;
+    private String id;
+    private String author;
     private String title;
-    private ArrayList<String> text;
+    private String path;
     private boolean enabled;
     
-    public Poem(int id, String title, ArrayList<String> text, boolean enabled){
+    public Poem(String id, String author, String title, String path, boolean enabled){
         this.id = id;
+        this.author = author;
         this.title = title;
-        this.text = text;
+        this.path = path;
         this.enabled = enabled;
     }
     
-    public int getID(){
+    public String getID(){
         return this.id;
+    }
+    
+    public String getAuthor(){
+        return this.author;
     }
     
     public String getTitle(){
         return this.title;
     }
     
-    public ArrayList<String> getText(){
-        return this.text;
+    public String getText(){
+        return this.path;
     }
     
     public boolean getEnabled(){

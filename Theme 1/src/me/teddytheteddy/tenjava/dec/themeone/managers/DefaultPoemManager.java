@@ -19,14 +19,16 @@ public class DefaultPoemManager {
 
     public void movePoems(File df) {
         try {
+            File pf = new File(df.getPath(), "Poems/");
+            pf.mkdirs();
+            
             File p1f = new File(df.getPath(), "Poems/Haiku-Evening.txt");
-            p1f.mkdirs();
             try {
                 p1f.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(DefaultPoemManager.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             OutputStream o1 = new FileOutputStream(df.getPath() + "/Poems/Haiku-Evening.txt");
             InputStream p1 = Main.class.getResourceAsStream("/resources/Haiku-Evening.txt");
             try {
