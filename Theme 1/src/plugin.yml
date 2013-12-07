@@ -1,6 +1,6 @@
-name: Magic Books
+name: Poetry
 version: 0.0.1
-description: Adds magical books to the game
+description: Poetry for the minecrafters
 main: me.teddytheteddy.tenjava.dec.themeone.Main
 
 commands:
