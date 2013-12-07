@@ -5,7 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.EntityEffect;
+import org.bukkit.Instrument;
 import org.bukkit.Location;
+import org.bukkit.Note;
+import org.bukkit.Note;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -15,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
@@ -61,19 +68,68 @@ public class Main extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (sender instanceof Player) {
             if (cmd.getName().equalsIgnoreCase("ironman")) {
-                Player p = (Player) sender;
+                final Player p = (Player) sender;
 
                 String prefix = "&7[&cIron Man&7] &r";
                 if (p.hasPermission("ironman.be")) {
                     if (!Main.IronMen.containsKey(p.getName())) {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&fYou are now morphing into &cIron Man&f!"));
                         Main.Morphing.put(p.getName(), p.getLocation());
-                        //Awesome Effects Here
-                        morphPlayer(p);
+
+                        morphEffects(p);
+
+                        int loop = 0;
+                        while (loop != 5) {
+                            final float f1 = 6 - loop;
+                            final int loopAmount = loop;
+                            Bukkit.getScheduler().scheduleSyncDelayedTask(this, new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    morphEffects(p);
+                                    p.playSound(p.getLocation(), Sound.EXPLODE, f1, 10F);
+                                }
+
+                            }, 20 * loop);
+                            loop++;
+                        }
+
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(this, new BukkitRunnable() {
+
+                            @Override
+                            public void run() {
+                                morphEffects(p);
+                                p.playSound(p.getLocation(), Sound.EXPLODE, 100F, 10F);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 95);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 95);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 95);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 95);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 95);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 152);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 152);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 152);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 152);
+                                p.playEffect(p.getLocation(), Effect.STEP_SOUND, 152);
+
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 1.0F, 1.0F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.9F, 0.9F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.8F, 0.8F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.7F, 0.7F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.6F, 0.6F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.5F, 0.5F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.4F, 0.4F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.3F, 0.3F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.2F, 0.2F);
+                                p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 0.1F, 0.1F);
+
+                                morphPlayer(p);
+                            }
+
+                        }, 20 * 5);
                     } else {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&fYou are now morphing into &cYourself&f!"));
                         Main.Morphing.put(p.getName(), p.getLocation());
-                        
+
                         unMorphPlayer(p);
                     }
 
@@ -119,5 +175,19 @@ public class Main extends JavaPlugin {
         Main.IronMen.get(p.getName()).remove();
         Main.IronMen.remove(p.getName());
         Main.Morphing.remove(p.getName());
+    }
+
+    private void morphEffects(Player p) {
+        p.playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+        p.playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+        p.playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+        p.playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+        p.playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 1);
+
+        p.playEffect(p.getLocation(), Effect.EXTINGUISH, 1);
+        p.playEffect(p.getLocation(), Effect.EXTINGUISH, 1);
+        p.playEffect(p.getLocation(), Effect.EXTINGUISH, 1);
+        p.playEffect(p.getLocation(), Effect.EXTINGUISH, 1);
+        p.playEffect(p.getLocation(), Effect.EXTINGUISH, 1);
     }
 }
