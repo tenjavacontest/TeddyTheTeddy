@@ -4,7 +4,10 @@ description: Poetry for the minecrafters
 main: me.teddytheteddy.tenjava.dec.themeone.Main
 
 commands:
-
+    poetry:
+        description: The all you need for Poetry!
 permissions:
     poetry.get:
         default: true
+    poetry.admin:
+        default: op
