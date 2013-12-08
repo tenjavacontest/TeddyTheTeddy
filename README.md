@@ -5,8 +5,8 @@ The stream will be live at [Twitch.TV/TeddyTheTeddy](http://www.twitch.tv/teddyt
 
 ### Entries
 I am hoping to enter both of the ten.java themes, but if I dont have time, well I dont have time.
-- Theme 1 - Minecraft Version 1.7.2 - [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%201) - [Download](https://raw.github.com/tenjavacontest/TeddyTheTeddy/master/Theme%201%20Final%20Build%20-%20Poetry.jar)
-- Theme 2 - Minecraft Version 1.7.2 - [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%202) - [Download](https://raw.github.com/tenjavacontest/TeddyTheTeddy/master/Theme%202%20Final%20Build%20-%20Iron%20Man.jar)
+- Theme 1 - Minecraft Version 1.7.2 - CraftBukkit: craftbukkit-1.7.2-R0.1-20131207.033645-22 - [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%201) - [Download](https://raw.github.com/tenjavacontest/TeddyTheTeddy/master/Theme%201%20Final%20Build%20-%20Poetry.jar)
+- Theme 2 - Minecraft Version 1.7.2 - CraftBukkit: craftbukkit-1.7.2-R0.1-20131207.033645-22 - [See It Here](https://github.com/tenjavacontest/TeddyTheTeddy/tree/master/Theme%202) - [Download](https://raw.github.com/tenjavacontest/TeddyTheTeddy/master/Theme%202%20Final%20Build%20-%20Iron%20Man.jar)
 
 ### License
 All files on this repository have been released under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
